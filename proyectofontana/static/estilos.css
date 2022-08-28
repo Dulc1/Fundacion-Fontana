@@ -1,0 +1,92 @@
+/* --- GALERIA --- */
+
+#gallery {
+    background-color:whitesmoke;
+    margin: 50px auto auto auto;
+}
+
+#gallery .col-lg-3 {
+    margin: 0px;
+    padding: 20px;
+}
+
+#gallery img {
+    width: 100%;
+    height: 180px;
+}
+
+#gallery img:hover {
+    border: 5px solid #0E2C40;
+}
+/* --- TARJETAS --- */
+
+.title-line1 {
+    margin: 180px 0px 25px 0px;
+    background-color: #0e2c40;
+    height: 3px;
+}
+
+.title-line2 {
+    margin: 25px 0px 25px 0px;
+    background-color: #0e2c40;
+    height: 3px;
+}
+
+#magazine-title h4{
+    color: #0E2C40;
+    text-align: start;
+    font-size: 30px;
+    margin: 25px 0px 25px 0px;
+    font-weight: 700;
+}
+
+#cards-container {
+    
+    flex-wrap: wrap;
+    display: flex;
+    background-color:whitesmoke;
+    width: auto;
+    height: 500px;
+    margin: 25px auto 400px auto;
+    font-size: 18px;
+}
+
+.cards {
+    float: left;
+    margin: 15px auto 15px auto;
+    background-color: white;
+    width: 300px;
+    height: max-content;
+    border-radius: 20px;
+    
+}
+
+.cards-images {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.cards-description {
+    width: auto;
+    padding: .2rem 1rem;
+}
+
+.cards-links {
+    border: 2px solid rgba(0, 0, 0, .3);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    padding: .5rem;
+    background-color: #0e2c406c;    
+}
+.cards-links a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #0E2C40;
+    font-weight: 700;
+}
+
+.dropdown-menu{ 
+    transform: translate3d(100px, 40px, 0px)!important; 
+}
