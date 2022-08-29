@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block contenido%}
+
+
+            <div>
+                <div class="row d-flex justify-content-around" style="background-color: #0E2C40">
+                    <h1 class="align-text-center text-center text-white fw-bold">NOTICIAS</h1><br><br><br>
+                </div> 
+            </div>
+            <section class="container">
+                <br>
+                {% for noticia in noticias %}
+                <div class="row featurette">
+                    <div class="col-md-7">
+                        <h2 class="featurette-heading fw-normal lh-1"> {{noticia.titulo}} <span class="text-muted"></span></h2>
+                        <p class="lead">{{noticia.contenido}}</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{{MEDIA_ROOT}}/media/{{noticia.img}}" alt="">
+                        </div>
+                            <p><a class="btn btn-secondary" href="{% url 'noticiasdetalle' id=noticia.id %}">Leer más &raquo;</a></p>
+                        </div>
+
+                    </div>
+                </div>
+
+                    <hr class="featurette-divider">
+
+                    {% endfor %}
+
+        
+            {% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{%block title%}Bienvenido{%endblock%}
+
+{% block contenido %}
+ 
+    {%if user.is_authenticated%}
+        <h1>Hola{{ user.username }}</h1>
+    {%else %}
+        <a href="{% url 'registro' %}">"Registrate"</a>
+    {% endif %}
+
+{%endblock contenido %}

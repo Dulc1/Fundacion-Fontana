@@ -56,10 +56,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'proyectofontana.urls'
 
+TEMPLATE_DIR = os.path.join(os.path.dirname(BASE_DIR),'templates')
+TEMPLATE_NOTICIAS = os.path.join(os.path.dirname(BASE_DIR),'templates/noticias')
+TEMPLATE_EVENTOS = os.path.join(os.path.dirname(BASE_DIR),'templates/eventos')
+TEMPLATE_LOGIN = os.path.join(os.path.dirname(BASE_DIR),'templates/login')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(BASE_DIR), 'templates')],
+        'DIRS':  [TEMPLATE_DIR,TEMPLATE_NOTICIAS,TEMPLATE_EVENTOS,TEMPLATE_LOGIN],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

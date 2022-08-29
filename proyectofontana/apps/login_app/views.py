@@ -1,37 +1,40 @@
 
 from django.shortcuts import render
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.shortcuts import redirect
-from http.client import HTTPResponse
-from django.contrib import messages
-
-
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import FormView
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from .forms import SignUpForm
 
 # Create your views here.
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+class Login(auth_views.LoginView):
+    """vista de login usuario"""
+    template_name = 'login.html'
 
-        user=authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            messages.success(request, 'Bienvenido {}'.format(user.username))
-            return redirect('inicio')
-        else:
-            messages.error(request,'Usuario o contraseña no válidos')
 
-    return render(request, 'login.html',{
-#context
+class logout(LoginRequiredMixin, auth_views.LogoutView):
+    """vista de logout usuario"""
+    template_name = 'logged_out.html'
 
-    })
+class SignUpView(FormView):
+    """vista de signup usuario"""
+    template_name = 'login/registro.html'
+    form_class=SignUpForm
+    success_url: reverse_lazy('login:registrocomplete')
 
-def logout_view(request):
-    logout(request)
-    messages.success(request, 'Sesion cerrada exitosamente')
-    return redirect('login')
+    def form_valid(self, form):
+        """verificamos que los datos sean validos"""
+        form.save()
+        return super().form_valid(form)
+
+    class WelcomeView(CreateView):
+        template_name = 'welcome.html'
+
+
+
+
+
 
 
 

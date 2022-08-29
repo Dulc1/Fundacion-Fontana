@@ -11,11 +11,11 @@ class noticia(models.Model):
 
     autor=models.ForeignKey('auth.User', on_delete=models.CASCADE)
     titulo=models.CharField(max_length=255)
-    contenido=models.CharField(max_length=255)
+    contenido=models.TextField()
     img=    models.ImageField(null=True, blank=True, upload_to='img/noticias', help_text='Seleccione una imagen para mostrar')
     creado=models.DateTimeField(default=timezone.now)
     modificado= models.DateTimeField(auto_now=True)
-    publicado=models.DateTimeField(auto_now=True)
+    publicado=models.DateTimeField(blank=True, null=True)
     categorias=models.ManyToManyField('categorias', related_name='noticias')
 
     def publicarNoticia(self):

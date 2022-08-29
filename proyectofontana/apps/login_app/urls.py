@@ -14,31 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import  include,path
-from django.urls import re_path as url
-from django.conf.urls.static import static
-from django.conf import settings
+from django.urls import path
 from apps.noticias_app import views
 from apps.eventos_app.views import eventos
+from django.contrib.auth import views as auth_views  
+from .views import SignUpView
+from django.views.generic import TemplateView
+from apps.login_app import views
+from .views import SignUpView
 
 
 
 
 urlpatterns =[
-    path('admin/', admin.site.urls),
-
-    path('', views.inicio, name='inicio'),
+    path('login', auth_views.LoginView.as_view(), name='login'),
+    path('logout', auth_views.LoginView.as_view(), name='logout'),
+    path('register', SignUpView.as_view(), name='register'),
+    path('registrocomplete', TemplateView.as_view(template_name='login/registrocomplete.html'), name='registrocomplete'),
     
-    path('login/', include('apps.login_app.urls'), name='login'),
-     
-    path('nosotros', views.nosotros, name='nosotros'),
-
-    url('noticias/<int:id>/', views.noticiasdetalle, name='noticias-detalle'),
-
-    path('noticias', views.Noticias, name='noticias'),
-
-   path('eventos', eventos, name='eventos'),
-    
-    
-    ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)
-
+]
