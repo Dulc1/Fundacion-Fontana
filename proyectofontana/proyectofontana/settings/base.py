@@ -59,7 +59,7 @@ ROOT_URLCONF = 'proyectofontana.urls'
 TEMPLATE_DIR = os.path.join(os.path.dirname(BASE_DIR),'templates')
 TEMPLATE_NOTICIAS = os.path.join(os.path.dirname(BASE_DIR),'templates/noticias')
 TEMPLATE_EVENTOS = os.path.join(os.path.dirname(BASE_DIR),'templates/eventos')
-TEMPLATE_LOGIN = os.path.join(os.path.dirname(BASE_DIR),'templates/login')
+TEMPLATE_LOGIN = os.path.join(os.path.dirname(BASE_DIR),'templates/registration')
 
 TEMPLATES = [
     {
@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFAILS_DIRS = (os.path.join(os.path.dirname(BASE_DIR), 'static')),
+STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR), 'static')),
 MEDIA= '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 # Default primary key field type

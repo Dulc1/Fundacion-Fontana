@@ -17,13 +17,13 @@
                         <p class="lead">{{noticia.contenido}}</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="{{MEDIA_ROOT}}/media/{{noticia.img}}" alt="">
+                        <img src= "{{MEDIA_ROOT}}/{{ noticia.img }}" width="500" alt="">
                         </div>
-                            <p><a class="btn btn-secondary" href="{% url 'noticiasdetalle' id=noticia.id %}">Leer más &raquo;</a></p>
+                        <p><a class="btn btn-secondary" href="{% url 'noticiasdetalle' id=noticia.id %}">Leer más &raquo;</a></p>
                         </div>
 
                     </div>
-                </div>
+                
 
                     <hr class="featurette-divider">
 

@@ -1,5 +1,7 @@
 <!doctype html>
+
 {% load static %}
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -49,7 +51,7 @@
     Ingresar
                                 </button>
                                 <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+                                <li><a class="dropdown-item" href="">Iniciar Sesión</a></li>
                                 <li><a class="dropdown-item" href="#">Registrarse</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Salir</a></li>
@@ -64,9 +66,9 @@
         
         <main>
 
-        {%block contenido%}
+        {% block contenido %}
 
-        {%endblock contenido %}
+        {% endblock  %}
             
             
         </main>
@@ -75,7 +77,7 @@
                 <div class="row text-black p-5 d-flex justify-content-around" style="background-color:#E8ECEE">
                     <div class="col-xs-12 col-md-6 col-lg-3 text-start"><p class="h6 fw-bolder">Datos de Contacto</p>
                         <ul class="d-flex flex-column mb-3 ">
-                            <il class="mb-3"><img  class="img-fluid" src="/images/llamada.png" width="5%"alt= "icono llamada">   +54 9 362 439-5069</il>
+                            <il class="mb-3"><img  class="img-fluid" src="{% static '/images/llamada.png' %}" width="5%"alt= "icono llamada">   +54 9 362 439-5069</il>
                             <il class="mb-3"><img class="img-fluid" src="/images/email.png" width="5%" alt= "icono email">   fundacionmemorias@gmail.com</il>  
                             <il class="mb-3"><img class="img-fluid" src="/images/marcador-de-posicion.png" width="5%"alt= "icono ubicacion">   Mz 28 Pc 9 20 viviendas SITECH 3514 Fontana, Chaco</il>
                         </ul>

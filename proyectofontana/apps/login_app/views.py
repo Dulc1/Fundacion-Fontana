@@ -10,18 +10,18 @@ from .forms import SignUpForm
 # Create your views here.
 class Login(auth_views.LoginView):
     """vista de login usuario"""
-    template_name = 'login.html'
+    template_name = 'login/login.html'
 
 
 class logout(LoginRequiredMixin, auth_views.LogoutView):
     """vista de logout usuario"""
-    template_name = 'logged_out.html'
+    template_name = 'login/logged_out.html'
 
 class SignUpView(FormView):
     """vista de signup usuario"""
     template_name = 'login/registro.html'
     form_class=SignUpForm
-    success_url: reverse_lazy('login:registrocomplete')
+    success_url: reverse_lazy('apss.login_:registrocomplete')
 
     def form_valid(self, form):
         """verificamos que los datos sean validos"""

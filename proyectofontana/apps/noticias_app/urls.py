@@ -1,5 +1,4 @@
 """proyectofontana URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
 Examples:
@@ -14,34 +13,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import  include,path
-from django.urls import re_path as url
+from django.urls import include,path
+from django.urls import re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from apps.noticias_app import views
-from apps.eventos_app.views import eventos
 
-
-
-
-urlpatterns =[
-    path('admin/', admin.site.urls),
-
-    path('', views.inicio, name='inicio'),
-    
-    path('login/', include('apps.login_app.urls'), name='login'),
-    
-    path('nosotros', views.nosotros, name='nosotros'),
-
-    url('noticias/', include('apps.noticias_app.urls')),
-
-    path('noticias', views.noticias, name='noticias'),
-
-    path('registration/', include('apps.login_app.urls')),
-
-    path('eventos', eventos, name='eventos'),
-    
-    
-    ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True)
-    # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)
-
+urlpatterns = [
+    path('noticias/<int:id>/', views.noticiasdetalle, name='noticiasdetalle'),
+    path("noticias/new", views.CrearNoticiaView.as_view(), name='CrearNoticiaView'),
+    path('comentario/<int:id>/approve', views.comment_approve, name='comment_approve'),
+    path('comentario/<int:id>/remove', views.comment_remove, name='comment_remove'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
