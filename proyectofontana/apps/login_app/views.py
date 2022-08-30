@@ -15,13 +15,13 @@ class Login(auth_views.LoginView):
 
 class logout(LoginRequiredMixin, auth_views.LogoutView):
     """vista de logout usuario"""
-    template_name = 'login/logged_out.html'
+    template_name = 'registration/logged_out.html'
 
 class SignUpView(FormView):
     """vista de signup usuario"""
-    template_name = 'login/registro.html'
+    template_name = 'registration/registro.html'
     form_class=SignUpForm
-    success_url: reverse_lazy('apss.login_:registrocomplete')
+    success_url: reverse_lazy('apps.login_app:registrocomplete')
 
     def form_valid(self, form):
         """verificamos que los datos sean validos"""

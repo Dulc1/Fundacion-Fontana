@@ -25,5 +25,5 @@ class SignUpForm(UserCreationForm):
         if password1 != password2:
             raise forms.ValidationError("Las contraseñas no coinciden")
 
-        return 
+        return data
     

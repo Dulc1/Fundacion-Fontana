@@ -23,8 +23,8 @@ app_name= 'apps.login_app'
 
 urlpatterns =[
     path('login', auth_views.LoginView.as_view(), name='login'),
-    path('logout', auth_views.LoginView.as_view(), name='logout'),
+    path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('register', SignUpView.as_view(), name='register'),
-    path('registrocomplete', TemplateView.as_view(template_name='login/registrocomplete.html'), name='registrocomplete'),
+    path('registrocomplete', TemplateView.as_view(template_name='registration/registrocomplete.html'), name='registrocomplete'),
     
 ]
