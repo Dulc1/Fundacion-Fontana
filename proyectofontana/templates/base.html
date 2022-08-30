@@ -18,7 +18,8 @@
 
     </head>
     <body>
-        <header>
+        <header  class="bg-light">
+        
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid ">
                     <a class="navbar-brand" href="#"><img class="d-flex align-items-start"src="{% static 'images/logo1.png' %}"></a>
@@ -43,26 +44,51 @@
                                 <a class="nav-link  link-dark fw-bolder" href="#">BIBLIOTECA</a>
                             </li>
                         </ul>
+
+                        {% if user.is_authenticated %}
+                <div class="d-flex" style="margin-left: 50%; justify-content: end">
+                    <h5>Hola {{ user.username }}</h5>
+                </div>
+                <div class="d-flex " style="margin-left: 2%; justify-content: end">
+                    <a class="btn btn-primary" href="{%url 'apps.login_app:logout'%}">Cerrar Sesión</a>
+                </div>
+            {% else %}
+                <div class="d-flex" style="margin-left: 50%; justify-content: end">
+                <a class="btn fw-bolder" style="background-color: #C1E1A7 " href="{%url 'apps.login_app:login'%}"> Iniciar Sesión</a>
+                </div>
+                <div class="d-flex" style="margin-left: 2%;">
+                <a class="btn fw-bolder" style="background-color: #C1E1A7 " href="{%url 'apps.login_app:register'%}">Registrarse</a>
+             
+                </div>
+                 
+            {% endif %}
                     </div>
+                   
             
-                            </a>
+                          <!--  </a>
                             <div class="btn-group dropstart">
                                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     Ingresar
                                 </button>
                                 <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="">Iniciar Sesión</a></li>
-                                <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                                <li><a class="dropdown-item" href="{%url 'apps.login_app:login'%}">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="{%url 'apps.login_app:register'%}">Registrarse</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Salir</a></li>
+                                <li><a class="dropdown-item" href="{%url 'apps.login_app:logout'%}">Salir</a></li>
                                 </ul>
-                            </div>
+                            </div>-->
                         
                         </div>
                     </div>
                 </div>
+            
             </nav>
+            <hr>
+
+            
+           
         </header>
+       
         
         <main>
 
