@@ -49,7 +49,7 @@
 
     {%endfor%}
 {%endif%}
-    <form action="" method="POST" class="form-signin container">
+    <form action="{% url 'apps.login_app:login' %}" method="POST" class="form-signin container">
     {% csrf_token %}
     
     

@@ -37,11 +37,10 @@ urlpatterns =[
 
     path('noticias', views.noticias, name='noticias'),
 
-    path('registration/', include('apps.login_app.urls')),
+    path('registration', include('apps.login_app.urls')),
 
     path('eventos', eventos, name='eventos'),
     
     
-    ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True)
-    # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)
+    ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)
 

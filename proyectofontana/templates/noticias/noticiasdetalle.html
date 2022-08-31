@@ -13,16 +13,17 @@
         {{ noticia.contenido|safe|linebreaksbr}}
         </p>
         {% if user.is_authenticated %}
-            <a class="btn btn-primary" href="{% url 'noticia_edit' id=noticia.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a class="btn btn-primary" href="{% url 'noticia_remove' id=noticia.id %}"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-primary" href="{% url 'noticiasdetalle' id=noticia.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
         {% endif %}
 
         <hr>
         {% if user.is_authenticated%}
             <h3>Escribe un comentario</h3>
-            <form method="post" style="margin-top: 1.3em;">
-            {{ comment_form.as_p }}
+            <form method="POST" style="margin-top: 1.3em;">
             {% csrf_token %}
+            {{ coment_form.as_p }}
+          
             <button type="submit" class="btn btn-primary  btn-lg">Enviar comentario</button>
             </form>
         {% else %}
@@ -32,7 +33,7 @@
         {% endif %}
         <hr>
         <div class="container">
-            {% for comentario in noticia.comentario.all %}
+            {% for comentario in comentarios %}
                 <br>
                 {% if user.is_authenticated or comment.approved_comment %}
 
@@ -41,8 +42,8 @@
                         <a class="btn btn-default" href="{% url 'comment_remove' id=comentario.id %}"><span class="glyphicon glyphicon-remove"></span></a>
                         <a class="btn btn-default" href="{% url 'comment_approve' id=comentario.id %}"><span class="glyphicon glyphicon-ok"></span></a>
                     {% endif %}
-                    <p>{{ cuerpo_comentario.text|safe|linebreaks }}</p>
-                    <p>Posted by: <strong>{{ comentario.autor }}</strong></p>
+                    <p>{{ comentario.cuerpo_comentarios|safe|linebreaks }}</p>
+                    <p>Publicado por: <strong>{{ comentario.autor }}</strong></p>
                 {% endif %}
                 {% empty %}
                 <p>No hay comentarios.</p>

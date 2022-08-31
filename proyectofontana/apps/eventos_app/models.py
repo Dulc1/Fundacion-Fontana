@@ -5,7 +5,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Evento(models.Model):
-    nombre = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     dia=models.DateTimeField()
     publicado=models.DateTimeField(auto_now=True)
     modalidad= models.CharField(max_length=100)

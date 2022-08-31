@@ -5,12 +5,12 @@
 <main role="main" class="container">
     <div class="starter-template">
         <h1>Tu usuario ha sido creado con exito</h1>
-        <p class="lead">Si la pagina no es redirigida en 5 segundos pulsa <a href="{% url 'login:login' %}">aqui</a>.</p>">
+        <p class="lead">Si la pagina no es redirigida en 5 segundos pulsa <a href="{% url 'apps.login_app:login' %}">aqui</a>.</p>">
     </div>
 </main>
 <script>
     setTimeout(function(){
-    window.location.replace("{% url 'login:login' %}");
+    window.location.replace("{% url 'apps.login_app:login' %}");
     },5000);
     </script>
 {% endblock %}

@@ -33,6 +33,7 @@ def noticiasdetalle(request,id):
     try:
         datanoticia = noticia.objects.get(id=id)
         lista_comentarios = comentarios.objects.filter(aprobado=True)
+        print(lista_comentarios)
     except noticia.DoesNotExist:
         raise Http404('La Noticia solicitada no existe')
 
@@ -53,10 +54,13 @@ def noticiasdetalle(request,id):
     context = {
         "noticia": datanoticia,
         "comentarios":lista_comentarios,
+        "form":form_class
        # "MEDIA_ROOT": 'media',
     }
 
     return render(request,'noticiasdetalle.html',context)
+
+    
 
 class CrearNoticiaView(CreateView, LoginRequiredMixin):
     login_url= '/login'
