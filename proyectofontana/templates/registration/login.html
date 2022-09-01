@@ -26,8 +26,10 @@
     </form>
 </main>-->
 
-   
-<main class="form-signin w-50 m-auto container">
+<body class="text-center">
+<br>
+<br>  
+<main class="container p-5 m-md-auto">
 
 {%if form.errors %}
     {% for field in form%}
@@ -49,17 +51,20 @@
 
     {%endfor%}
 {%endif%}
-    <form action="{% url 'apps.login_app:login' %}" method="POST" class="form-signin container">
+    <form action="{% url 'apps.login_app:login' %}" class="shadow p-3 mb-5  rounded container-fluid" method="POST"  style ="background-color:#a4e9d9; width:35%">
     {% csrf_token %}
     
     
     <h1 class="h3 mb-3 font-weight-normal" style="text-align:center">Login</h1>
     <label for="id_username" class='sr-only'>Usuario</label>
+    
     <input type="text" class="form-control" id="id_username" name="username" placeholder="Usuario" required autofocus>
+    <br>
     <label for="id_password" class='sr-only'>Contrasena</label>
     <input type="password" class="form-control" id="id_password" name="password" placeholder="Contrasena" required>
+    <br>
     
-    <button type="submit" class=" text-white btn btn-lg  w-100" style="background-color: #0E2C40">Iniciar Sesion</button>
+    <button type="submit"  class="btn btn-lg  btn-block" style=background-color:#1CC8A0>Iniciar Sesion</button>
 
 </form>
 

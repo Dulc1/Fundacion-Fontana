@@ -22,9 +22,10 @@
             <h3>Escribe un comentario</h3>
             <form method="POST" style="margin-top: 1.3em;">
             {% csrf_token %}
-            {{ coment_form.as_p }}
-          
-            <button type="submit" class="btn btn-primary  btn-lg">Enviar comentario</button>
+            {{ form.as_p }}
+        
+            
+            <a class="btn btn-primary  btn-lg" href="{% url 'agregar_comentario' id=noticia.id %}">Enviar comentario</a>
             </form>
         {% else %}
         <p>Para agregar comentarios debe autenticarse <br>

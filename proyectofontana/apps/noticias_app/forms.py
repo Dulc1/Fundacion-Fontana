@@ -15,7 +15,7 @@ class NoticiaForm(forms.ModelForm):
 
 class CommentarioForm(forms.Form):
         model = comentarios
-        fields = ('autor', 'cuerpo_comentario',)
+        fields = ('autor', 'cuerpo_comentarios',)
 
         autor = forms.CharField(
             max_length=60,
@@ -24,7 +24,7 @@ class CommentarioForm(forms.Form):
                 "placeholder": "Ingresa tu nombre"
             })
         )
-        cuerpo_comentario = forms.CharField(widget=forms.Textarea(
+        cuerpo_comentarios = forms.CharField(widget=forms.Textarea(
             attrs={
                 "class": "form-control comment-textarea",
                 "id":"comment",

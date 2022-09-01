@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import NoticiaForm, CommentarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import( CreateView)
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def inicio(request):
@@ -37,24 +38,12 @@ def noticiasdetalle(request,id):
     except noticia.DoesNotExist:
         raise Http404('La Noticia solicitada no existe')
 
-    form=CommentarioForm()
-    if request.method=='POST':
-        form = CommentarioForm(request.POST)
-        if form.isvalid():
-            print("Validacion exitosa!")
-            print("Autor:" + form.cleaned_data["autor"])
-            print("Comentario:" + form.cleaned_data["cuerpo_comentario"])
-            comment = comentarios(
-                author=form.cleaned_data["autor"],
-                comment_body=form.cleaned_data["cuerpo_comentario"],
-                noticia=datanoticia
-            )
-            comment.save()
-
+    #form=CommentarioForm()
     context = {
         "noticia": datanoticia,
         "comentarios":lista_comentarios,
-        "form":form_class
+        #"formulario":form,
+        
        # "MEDIA_ROOT": 'media',
     }
 
@@ -114,3 +103,27 @@ def comment_remove(request, id):
     noticia_id = comentario.noticia.id
     comentario.delete()
     return redirect('noticia_detalle', id=noticia_id)
+
+
+@login_required
+def agregar_comentario(request, id):
+    datanoticia=noticia.objects.get( id=id)
+    if request.method=='POST':
+        form = CommentarioForm(request.POST)
+        if form.is_valid():
+            print("Validacion exitosa!")
+            print("Autor:" + form.cleaned_data["autor"])
+            print("Comentario:" + form.cleaned_data["cuerpo_comentarios"])
+            comment = comentarios(
+            autor=form.cleaned_data["autor"],
+            cuerpo_comentarios=form.cleaned_data["cuerpo_comentarios"],
+            noticia=datanoticia
+            )
+            comment.save()
+            noticia_id= noticia.id
+            return redirect("noticia_detalle",id=noticia_id)
+    else:
+        form= CommentarioForm()
+    context={"form":form,}   
+
+    return render(request,"noticiasdetalle.html",context)

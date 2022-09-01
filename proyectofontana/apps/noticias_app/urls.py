@@ -24,4 +24,5 @@ urlpatterns = [
     path("noticias/new", views.CrearNoticiaView.as_view(), name='CrearNoticiaView'),
     path('comentario/<int:id>/approve', views.comment_approve, name='comment_approve'),
     path('comentario/<int:id>/remove', views.comment_remove, name='comment_remove'),
+    path('noticia/<int:id>/comentar', views.agregar_comentario, name='agregar_comentario'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)

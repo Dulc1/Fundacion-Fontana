@@ -2,20 +2,53 @@
 {%block title%}Blog-Registro{%endblock%}
 {% block contenido %}
 
-<form method="POST"  class="form-signin">
+
+<body class="text-center">
+<br>
+<br>
+<!--<main class="form-signin d-xl-flex m-auto container">-->
+<main class="container p-5 m-md-auto" >
+
+
+
+
+    <form class="shadow p-3 mb-5  rounded container-fluid" method="POST"  style ="background-color:#a4e9d9; width:35%">
+
+
     {% csrf_token %}
     
     <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
     <label for="id_email" class='sr-only'>Email</label>
+    
     <input type="email" class="form-control" id="id_email" name="email" placeholder="Email" required autofocus>
+    <br>
     <label for="id_username" class='sr-only'>Nombre de usuario</label>
     <input type="text" class="form-control" id="id_username" name="username" placeholder="Usuario" required>
+    <br>
     <label for="inputPassword" class='sr-only'>Contrasena</label>
     <input type="password" class="form-control" id="id_password" name="password1" placeholder="Contrasena" required>
+    <br>
     <label for="inputPassword" class='sr-only'>Repetir contrasena</label>
     <input type="password" class="form-control" id="id_password_confirmation" name="password2" placeholder="Repetir contrasena" required>
+    <br>
     <div class="checkbox mb-3"></div>
-    <button type="submit" class="btn btn-lg btn-primary btn-block">Registrarse</button>
+    <button type="submit" class="btn btn-lg  btn-block" style=background-color:#1CC8A0>Registrarse</button>
+    <br>
+    </form>
+   
+    </main>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    </body>
+
 
 
 {%if form.errors %}
