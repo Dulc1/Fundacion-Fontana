@@ -1,39 +1,44 @@
 {% extends 'base.html' %}
-{%load static%}
-{%block contenido%}
 
+{% load static %}
 
-            <div>
-                <div class="row d-flex justify-content-around" style="background-color: #0E2C40">
+{% block contenido %}
+
+<div class="row d-flex justify-content-around" style="background-color: #0E2C40">
                     <h1 class="align-text-center text-center text-white fw-bold">NOTICIAS</h1><br><br><br>
                 </div> 
-            </div>
-            <section class="container">
                 <br>
-                {% for noticia in noticias %}
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading fw-normal lh-1"> {{noticia.titulo}} <span class="text-muted"></span></h2>
-                        <p class="lead">{{noticia.contenido}}</p>
-                    </div>
-                    <div class="col-md-5">
-                        <img src= "{{MEDIA_ROOT}}/{{ noticia.img }}" width="500" alt="">
-                        </div>
-                        <p><a class="btn fw-bolder" style="background-color: #EFBC75"href="{% url 'noticiasdetalle' id=noticia.id %}">Leer más &raquo;</a></p>
-                        </div>
+<section>
+    <div class="navBarNotices">
+    {% for categoria  in categorias  %}
+    <div class="categorias">
+    <a href="/categoria/{{categoria.id}}">{{categoria.nombre}}</a>
+    </div>
+    {% endfor %}
+    </div>
+    {% if categoria %}
+    <h1 class="Titulo">Noticias: categoria {{categoria.nombre}}</h1>
+    {% else %}
+    
+    {% endif %}
 
-                    </div>
-                
-
-                    <hr class="featurette-divider">
-
-            
-                <br> <br>    
-                <br> <br>
-                <br> <br>
-                <br> <br>
-
-                    {% endfor %}
-
-        
-            {% endblock %}
+    <article class="LayoutGenerico">
+    {% for noticia  in noticias  %}
+    <div class="CartaGenerico">
+        <div class="CartaGenerico-img">
+        <img src="{{MEDIA_URL}}/{{ noticia.img }}" alt="">
+        </div>
+        <div class="CartaGenerico-text">
+        <h3 class="subTitle">{{noticia.titulo}}</h3>
+        <p class="Events-text">{{noticia.contenido|slice:":100"}}</p>
+        <h6>Creado: {{ noticia.creado }}</h6>
+        <h6>Autor: {{ noticia.autor }}</h6>
+        <a href="/noticia/{{ noticia.id }}" class="Event-link">Leer Más...</a>
+        </div>
+    </div>
+        {% empty %}
+        <h3 class="Titulo">No hay noticias con esta categoria</h3>
+    {% endfor %}
+    </article>
+</section>
+{% endblock %}

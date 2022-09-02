@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+<!--<main class="container">
+        <article class="Noticia">
+        <h1 class="Titulo">{{ evento.name}}</h1>
+        <div class="Contexto">
+            <div class="Card  container-fluid border border-3 bg-light rounded-3">
+       
+                    <div>
+                    <br>
+                <h6>Creado: {{ evento.publicado}}</h6>
+                <h6>Autor: {{ evento.organiza }}</h6>
+                </div>
+            </div>
+            <div class="GenericoPlantilla-text">
+            <br>
+                <aside><p> {{evento.detalles}}</p></aside>
+            </div>
+            </div>
+        </div>
+        </article>
+    </main>
+    -->
+
+   
+
+<main class="container">
+<table  class="table container-fluid border border-3 bg-light rounded-3">
+                                    <thead class= "Noticia">
+                                
+                                        <tr>
+                                        {% for evento  in eventos  %}
+                                            <th scope="col">
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                    <div class="Card-img ">
+                                            <img class="img-container card-img-top" src="{{MEDIA_URL}}/{{ evento.img }}">
+                                                    </div> 
+                                                </div>
+                                            </th>
+
+                                            <th scope="col">
+                                            <h1 class="Titulo">{{ evento.name}}</h1>
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                <div class="GenericoPlantilla-text">
+            <br>
+                <aside><p> {{evento.detalles}}</p></aside>
+                <h6>Creado: {{ evento.publicado}}</h6>
+                <h6>Autor: {{ evento.organiza }}</h6>
+            </div>
+                                                </div>
+                                            </th>
+                                            </tr>
+                                            </thead>
+                                            </table>
+                                            </main>
+
+                                         
+
+
+                                        {% endblock %}

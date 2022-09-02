@@ -18,8 +18,11 @@ from django.urls import  include,path
 from django.urls import re_path as url
 from django.conf.urls.static import static
 from django.conf import settings
-from apps.noticias_app import views
+from apps.noticias_app import views as  viewsNotice
 from apps.eventos_app.views import eventos
+from apps.eventos_app import views as viewsEvents
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 
@@ -27,19 +30,28 @@ from apps.eventos_app.views import eventos
 urlpatterns =[
     path('admin/', admin.site.urls),
 
-    path('', views.inicio, name='inicio'),
+    path('', viewsNotice.inicio, name='inicio'),
     
     path('login/', include('apps.login_app.urls'), name='login'),
     
-    path('nosotros', views.nosotros, name='nosotros'),
+    path('nosotros', viewsNotice.nosotros, name='nosotros'),
 
-    url('noticias/', include('apps.noticias_app.urls')),
+    url('noticias/<int:id>', viewsNotice.noticiaDetalle, name='Noticia' ),
 
-    path('noticias', views.noticias, name='noticias'),
+    path('noticias', viewsNotice.noticias, name='noticias'),
+
+    path('comentarios/<int:id>', viewsNotice.commentAproved, name='comentAproved'),
+    
+    path('categoria/<int:id>', viewsNotice.categoriaDetail, name='Noticia'),
 
     path('registration', include('apps.login_app.urls')),
 
     path('eventos', eventos, name='eventos'),
+
+    path('eventos', viewsEvents.eventos, name='eventos'),
+
+
+    path('evento/<int:id>', viewsEvents.eventDetail, name='eventDetail'),
     
     
     ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)

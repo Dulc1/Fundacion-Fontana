@@ -1,33 +1,61 @@
 {% extends 'base.html' %}
-{%load static%}
-{%block contenido%}
-        <main>
-            <div>
-                <div class="row d-flex justify-content-around" style="background-color: #0E2C40">
+
+{% load static %}
+
+{% block contenido %}
+
+  <div class="row d-flex justify-content-around" style="background-color: #0E2C40">
                     <h1 class="align-text-center text-center text-white fw-bold">EVENTOS</h1><br><br><br>
                 </div> 
-            </div>
-            <section class="container">
-    
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-              <div class="card h-100">
-                <img src="" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-              </div>
-            </div>
-           
+                <br>
 
 
-        
+<main class="container">
+<br>
+<table  class="table container-fluid border border-5 bg-light rounded-3">
+                                    <thead class= "Noticia">
+                                
+                                        <tr>
+                                        {% for evento  in eventos  %}
+                                            <th scope="col">
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                    <div class="Card-img " style= "width:50rem">
+                                            <img class="img-container card-img-top" src="{{MEDIA_URL}}/{{ evento.img }}">
+                                                    </div> 
+                                                </div>
+                                            </th>
 
-            </section>
-        </main>
-        
-    {% endblock %}
+                                            <th scope="col">
+                                            <h1 class="Titulo">{{ evento.name}}</h1>
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                                                <div class="GenericoPlantilla-text">
+                                            <br>
+                                                <aside><p> {{evento.detalles}}</p></aside>
+                                                <h6>Lugar: {{ evento.lugar}}</h6>
+                                                <h6>Fecha: {{ evento.dia }}</h6>
+                                                <h6>Modalidad: {{ evento.modalidad }}</h6>
+                                            </div>
+                                                                                </div>
+                                                                                
+                                                                            </th>
+
+                                                                            </tr>
+                                                                            
+                                                                            </thead>
+                                                                            
+                                                                            {%endfor %}
+                                                                           
+                                                                            
+                                                                            
+                                                                            </table>
+                                                                          
+                                                                      
+                                                                           
+                                                                            
+                                    
+                                                                            </main>
+                                                                            
+
+                                        {% endblock %}

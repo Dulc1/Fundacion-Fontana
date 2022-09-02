@@ -1,55 +1,51 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block contenido %}
-    <article class="row mt-5  container-fluid text-center">
-        <h1> {{ noticia.titulo}} </h1>
-
-        <div class="date"> {{ noticia.creado }}</div>
-        <div class="col-md-5">
-            <img src="media/{{noticia.img}}" width="100%" alt="">
+<section>
+  <article class="Noticia">
+    <h1 class="Titulo">{{ noticia.titulo }}</h1>
+    <div class="Contexto">
+      <div class="GenericoPlantilla">
+        <div class="GenericoPlantilla-img">
+          <div class="Card-Events-img">
+            <img src="{{MEDIA_URL}}/{{noticia.img}}" alt="{{ noticia.nombre }}">
+          </div>
+          <div>
+            <h6>Creado: {{ noticia.creado }}</h6>
+            <h6>Autor: {{ noticia.autor_id }}</h6>
+          </div>
         </div>
-        <p>
-        {{ noticia.contenido|safe|linebreaksbr}}
-        </p>
-        {% if user.is_authenticated %}
-            <a class="btn btn-primary" href="{% url 'noticiasdetalle' id=noticia.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-
-        {% endif %}
-
-        <hr>
-        {% if user.is_authenticated%}
-            <h3>Escribe un comentario</h3>
-            <form method="POST" style="margin-top: 1.3em;">
-            {% csrf_token %}
-            {{ form.as_p }}
-        
-            
-            <a class="btn btn-primary  btn-lg" href="{% url 'agregar_comentario' id=noticia.id %}">Enviar comentario</a>
-            </form>
-        {% else %}
-        <p>Para agregar comentarios debe autenticarse <br>
-            <a href="{% url 'apps.login_app:login' %}">Iniciar sesión</a>
-            <a href="{% url 'apps.login_app:register' %}">Registrarse</a></p>
-        {% endif %}
-        <hr>
-        <div class="container">
-            {% for comentario in comentarios %}
-                <br>
-                {% if user.is_authenticated or comment.approved_comment %}
-
-                    {{ comentario.creado }}
-                    {% if not comment.approved_comment %}
-                        <a class="btn btn-default" href="{% url 'comment_remove' id=comentario.id %}"><span class="glyphicon glyphicon-remove"></span></a>
-                        <a class="btn btn-default" href="{% url 'comment_approve' id=comentario.id %}"><span class="glyphicon glyphicon-ok"></span></a>
-                    {% endif %}
-                    <p>{{ comentario.cuerpo_comentarios|safe|linebreaks }}</p>
-                    <p>Publicado por: <strong>{{ comentario.autor }}</strong></p>
-                {% endif %}
-                {% empty %}
-                <p>No hay comentarios.</p>
-            {% endfor %}
+        <div class="GenericoPlantilla-text">
+          <p> {{noticia.contenido}}</p>
         </div>
-    </article>
-    
+      </div>
+    </div>
+  </article>
+  <article class="Comentarios">
+    {% for comentario in comentarios %}
+    <div class="Comentario">
+      <p class="comentario-header">{{ comentario.autor}}<span class="Fecha"> {{ comentario.creado}}</span></p>
+      <p>{{ comentario.cuerpo_comentario}}</p>
+    </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+    <form method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit" class="btn_comentar">
+        Comentar
+      </button>
+    </form>
+    {% else %}
+    <div class="Comentario">
+      <p>
+        <a href="/login" class="Titulo">Inicia sesion para comentar</a>
+      </p>
+    </div>
+  </article>
+  {% endif %}
+</section>
+
 {% endblock %}

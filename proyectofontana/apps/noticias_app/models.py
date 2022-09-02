@@ -7,6 +7,9 @@ class categorias(models.Model):
 
     nombre=models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.nombre
+
 class noticia(models.Model):
 
     autor=models.ForeignKey('auth.User', on_delete=models.CASCADE)

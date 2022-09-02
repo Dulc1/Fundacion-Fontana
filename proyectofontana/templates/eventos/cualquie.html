@@ -1,0 +1,69 @@
+--!{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+        <div class="row d-flex justify-content-around" style="background-color: #0E2C40">
+                    <h1 class="align-text-center text-center text-white fw-bold">EVENTOS</h1><br><br><br>
+                </div> 
+                <br>
+            
+<main class="container">
+<table  class="table container-fluid border border-3 bg-light rounded-3">
+                                    <thead class= "Noticia">
+                                
+                                        <tr>
+                                            <th scope="col">
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                    <div class="Card-img ">
+                                            <img class="img-container card-img-top" src="{{MEDIA_URL}}/{{ evento.img }}">
+                                                    </div> 
+                                                </div>
+                                            </th>
+                                            <th scope="col">
+                                            <h1 class="Titulo">{{ evento.name}}</h1>
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                <div class="GenericoPlantilla-text">
+            <br>
+                <aside><p> {{evento.detalles}}</p></aside>
+                <h6>Creado: {{ evento.publicado}}</h6>
+                <h6>Autor: {{ evento.organiza }}</h6>
+            </div>
+                                                </div>
+                                            </th>
+                                            </tr>
+                                            </thead>
+                                            </table>
+                                            </main>
+  
+{% endblock %}
+-->
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+<section>
+  <h1 class="Titulo">Eventos</h1>
+  
+  <article class="LayoutGenerico">
+    {% for evento  in eventos  %}
+    <div class="CartaGenerico">
+      <div class="CartaGenerico-img">
+        <img src="{{MEDIA_URL}}/{{ evento.img }}" alt="">
+      </div>
+      <div class="CartaGenerico-text">
+        <h3 class="subTitle">{{evento.nombre}}</h3>
+        <p class="Events-text">{{evento.descripcion|slice:":100"}}</p>
+        <h6>Creado: {{ evento.creado }}</h6>
+        <h6>Autor: {{ evento.organizador }}</h6>
+        <a href="/evento/{{ evento.id }}" class="Event-link">Leer Más...</a>
+      </div>
+    </div>
+    {% endfor %}
+  </article>
+</section>
+{% endblock %}
