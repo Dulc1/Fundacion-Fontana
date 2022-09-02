@@ -17,12 +17,13 @@
     
 
     </head>
+
     <body>
         <header  class="bg-light">
 
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid ">
-                    <a class="navbar-brand" href="#"><img class="d-flex align-items-start"src="{% static 'images/logo1.png' %}"></a>
+                    <a class="navbar-brand" href="{%url 'inicio'%}"><img class="d-flex align-items-start"src="{% static 'images/logo1.png' %}"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -41,7 +42,7 @@
                                 <a class="nav-link px-3 link-dark fw-bolder" href="{% url 'noticias'%}">NOTICIAS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link  link-dark fw-bolder" href="{% url 'biblioteca'%}">BIBLIOTECA</a>
+                                <a class="nav-link  link-dark fw-bolder" href="{% url 'galeria'%}">BIBLIOTECA</a>
                             </li>
                         </ul>
 
@@ -50,14 +51,15 @@
                     <h5>Hola {{ user.username }}</h5>
                 </div>
                 <div class="d-flex " style="margin-left: 2%; justify-content: end">
-                    <a class="btn btn-primary" href="{%url 'apps.login_app:logout'%}">Cerrar Sesión</a>
+                    <a class="btn" style="background-color: #1CC8A0 " href="{%url 'apps.login_app:logout'%}">Cerrar Sesión</a>
                 </div>
             {% else %}
-                <div class="d-flex" style="margin-left: 50%; justify-content: end">
-                <a class="btn fw-bolder" style="background-color: #C1E1A7 " href="{%url 'apps.login_app:login'%}"> Iniciar Sesión</a>
+            
+                <div  class="d-flex responsive btn-responsive" style="margin-left: 50%; justify-content: end">
+                <a class="btn fw-bolder" style="background-color: #1CC8A0 " href="{%url 'apps.login_app:login'%}"> Iniciar Sesión</a>
                 </div>
                 <div class="d-flex" style="margin-left: 2%;">
-                <a class="btn fw-bolder" style="background-color: #C1E1A7 " href="{%url 'apps.login_app:register'%}">Registrarse</a>
+                <a class="btn fw-bolder" style="background-color: #1CC8A0" href="{%url 'apps.login_app:register'%}">Registrarse</a>
              
                 </div>
                  
@@ -81,13 +83,14 @@
                         </div>
                     </div>
                 </div>
-            
+             <hr>
             </nav>
             
 
             
            
         </header>
+       
        
         
         <main>
@@ -104,16 +107,16 @@
                     <div class="col-xs-12 col-md-6 col-lg-3 text-start"><p class="h6 fw-bolder">Datos de Contacto</p>
                         <ul class="d-flex flex-column mb-3 ">
                             <il class="mb-3"><img  class="img-fluid" src="{% static '/images/llamada.png' %}" width="5%"alt= "icono llamada">   +54 9 362 439-5069</il>
-                            <il class="mb-3"><img class="img-fluid" src="/images/email.png" width="5%" alt= "icono email">   fundacionmemorias@gmail.com</il>  
-                            <il class="mb-3"><img class="img-fluid" src="/images/marcador-de-posicion.png" width="5%"alt= "icono ubicacion">   Mz 28 Pc 9 20 viviendas SITECH 3514 Fontana, Chaco</il>
+                            <il class="mb-3"><img class="img-fluid" src="{%static '/images/email.png' %}" width="5%" alt= "icono email">   fundacionmemorias@gmail.com</il>  
+                            <il class="mb-3"><img class="img-fluid" src="{% static '/images/marcador-de-posicion.png' %}" width="5%"alt= "icono ubicacion">   Mz 28 Pc 9 20 viviendas SITECH 3514 Fontana, Chaco</il>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-3"><img class="img-fluid"src="/images/logo3.png" alt="logo de la fundacion" >
+                    <div class="col-xs-12 col-md-6 col-lg-3"><img class="img-fluid"src="{% static '/images/logo3.png' %}" alt="logo de la fundacion" >
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-3 text-center"><p class="h6 fw-bolder">Seguínos en Nuestras Redes</p>
                         <div class="d-flex justify-content-center">
-                            <a href="https://www.facebook.com/fundacionmemorias/" target="_blank"><img class="img-fluid"loading="lazy" alt="Sígueme en Facebook" height="45" width="45" src="/images/facebook-icono.png" title="Sígueme en Facebook"/></a>
-                            <a href="https://www.instagram.com/fundacionmemoriasfontana/" target="_blank"><img class="img-fluid" loading="lazy" alt="Sígueme en Instagram" height="45" width="45" src="/images/Instagram-icono.png" title="Sígueme en Instagram"/></a>  
+                            <a href="https://www.facebook.com/fundacionmemorias/" target="_blank"><img class="img-fluid"loading="lazy" alt="Sígueme en Facebook" height="45" width="45" src="{% static '/images/facebook-icono.png' %}" title="Sígueme en Facebook"/></a>
+                            <a href="https://www.instagram.com/fundacionmemoriasfontana/" target="_blank"><img class="img-fluid" loading="lazy" alt="Sígueme en Instagram" height="45" width="45" src="{% static '/images/Instagram-icono.png' %}" title="Sígueme en Instagram"/></a>  
                         </div>
                     </div>
                 </div>

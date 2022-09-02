@@ -1,0 +1,80 @@
+
+
+
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+            <div>
+                <div class="row d-flex justify-content-center" style="background-color: #0E2C40">
+                    <h1 class="d-flex-align-text-center text-center text-white fw-bold">BIBLIOTECA</h1><br><br><br>
+                </div>
+                <br>
+           
+
+                <section id="gallery" class="container">
+                    <article>
+                        <div id="magazine-title">
+                            <h4>FOTOS</h4>
+                        </div>
+            <div class="col-xl-12">
+                <div class="row ">
+
+                    {% for photo in photos %}
+                    <div class="col-md-4 p-3">
+                        <div class="card my-2">
+                            <img  class="img-fluid" src="{{photo.image}}" alt="Card image cap">
+
+                            <div class="card-body">
+                            <small>{{photo.descripcion}}</small>
+                            </div>
+                            
+                            </div>
+                        </div>    
+                         {% endfor %}
+                    </article>
+                    <hr>
+
+                    <article>
+                   
+                        <div class="title-container">
+                            <div id="magazine-title">
+                                <h4>REVISTAS</h4>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <div class="row ">
+                            {% for revista in revistas %}
+                            <div class="col-md-4 p-3 shadow p-3 mb-5  rounded container-fluid" >
+                        <div class="card my-2">
+                            <img  class="img-fluid" src="{{revista.image}}" alt="Card image cap" style= "width:50rem">
+                            <div class="card-body">
+                                <small>{{revista.titulo}}</small>
+                                <br>
+                                <a href="{{revista.link}}" target="_blank">Leer revista</a>
+                            </div>
+                            
+                        </div>
+                        <div id="cards-container">
+                            <div class="cards">
+                                <img class="cards-images" src="images/n6.png" alt="">
+                                <div class="cards-description">
+
+                      
+                                 
+                                  
+                                </div>
+                               
+                            </div>
+                           
+                            </div>
+                        </div> 
+                        {% endfor %}
+                    </article>
+                </section>
+            
+            {% endblock %}

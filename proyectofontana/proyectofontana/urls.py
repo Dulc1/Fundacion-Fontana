@@ -22,7 +22,9 @@ from apps.noticias_app import views as  viewsNotice
 from apps.eventos_app.views import eventos
 from apps.eventos_app import views as viewsEvents
 from django.conf.urls.static import static
-from django.conf import settings
+from apps.fotos_app.views import galeria, viewPhoto
+
+
 
 
 
@@ -34,7 +36,9 @@ urlpatterns =[
     
     path('login/', include('apps.login_app.urls'), name='login'),
 
-    path('biblioteca', viewsNotice.biblioteca, name='biblioteca'),
+    path('biblioteca',galeria, name='galeria'),
+
+    path('photo/', viewPhoto, name='photo'),
     
     path('nosotros', viewsNotice.nosotros, name='nosotros'),
 
