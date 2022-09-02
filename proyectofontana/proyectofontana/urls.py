@@ -33,6 +33,8 @@ urlpatterns =[
     path('', viewsNotice.inicio, name='inicio'),
     
     path('login/', include('apps.login_app.urls'), name='login'),
+
+    path('biblioteca', viewsNotice.biblioteca, name='biblioteca'),
     
     path('nosotros', viewsNotice.nosotros, name='nosotros'),
 

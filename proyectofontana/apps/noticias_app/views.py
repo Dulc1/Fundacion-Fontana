@@ -27,7 +27,7 @@ def nosotros(request):
     return render(request, 'nosotros.html')
 
 
-def contacto(request):
+def biblioteca(request):
     return render(request, 'biblioteca.html')
 
 
@@ -83,6 +83,8 @@ def categoriaDetail(request, id):
     if (request.method == "POST") and (request.user.id != None):
         form = FormComment(request.POST)
         if form.is_valid():
+            print("Validacion Exitosa")
+
             comment = comentarios(
                 autor_id = request.user.id,
                 cuerpo_comentario=form.cleaned_data["cuerpo_comentario"],

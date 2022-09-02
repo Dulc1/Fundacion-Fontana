@@ -4,41 +4,62 @@
 
 {% block contenido %}
 
-<div class="row d-flex justify-content-around" style="background-color: #0E2C40">
+<div class="row d-flex justify-content-around container-fluid" style="background-color: #0E2C40">
                     <h1 class="align-text-center text-center text-white fw-bold">NOTICIAS</h1><br><br><br>
                 </div> 
                 <br>
-<section>
-    <div class="navBarNotices">
-    {% for categoria  in categorias  %}
-    <div class="categorias">
-    <a href="/categoria/{{categoria.id}}">{{categoria.nombre}}</a>
-    </div>
-    {% endfor %}
-    </div>
-    {% if categoria %}
-    <h1 class="Titulo">Noticias: categoria {{categoria.nombre}}</h1>
-    {% else %}
-    
-    {% endif %}
 
-    <article class="LayoutGenerico">
-    {% for noticia  in noticias  %}
-    <div class="CartaGenerico">
-        <div class="CartaGenerico-img">
-        <img src="{{MEDIA_URL}}/{{ noticia.img }}" alt="">
-        </div>
-        <div class="CartaGenerico-text">
-        <h3 class="subTitle">{{noticia.titulo}}</h3>
-        <p class="Events-text">{{noticia.contenido|slice:":100"}}</p>
-        <h6>Creado: {{ noticia.creado }}</h6>
-        <h6>Autor: {{ noticia.autor }}</h6>
-        <a href="/noticia/{{ noticia.id }}" class="Event-link">Leer Más...</a>
-        </div>
-    </div>
-        {% empty %}
-        <h3 class="Titulo">No hay noticias con esta categoria</h3>
-    {% endfor %}
-    </article>
-</section>
-{% endblock %}
+
+<main class="container">
+<br>
+<table  class="table container">
+                                    <thead class= "Noticia">
+                                
+                                
+                                        <tr>
+                                        {% for noticia  in noticias  %} 
+                                            <th  scope="col">
+                                            
+                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
+                                                
+                                                    <div class="Card-img " style= "width:50rem">
+                                            <img class="img-container card-img-top" src="{{MEDIA_URL}}/{{ noticia.img }}">
+                                                    </div> 
+                                                </div>
+                                            </th>
+                                            
+                                            <th scope="col">
+                                            
+                                            
+                                                <div class="  d-flex-justify-content-between w-100-px-px p-3">
+                                                <h1 class="Titulo bg-light ">{{ noticia.titulo}}</h1>
+                                                                                <div class="GenericoPlantilla-text">
+                                            <br>
+                                                <h6>Publicado: {{ noticia.creado}}</h6>
+                                                <aside><p> {{noticia.contenido|slice:":100"}}</p></aside>
+                                                <a href="/noticia/{{noticia.id}}" class="Event-link">Leer mas...</a>
+                                                
+                                            
+                                                
+                                            </div>
+                                                                                </div>
+                                                                               
+                                                                            </th>
+
+                                                                            </tr>
+                                                                            
+                                                                            </thead>
+                                                                            
+                                                                            {%endfor %}
+                                                                        
+                                                                            
+                                                                            
+                                                                            </table>
+                                                                    
+                                                        
+                                                                            
+                                    
+                                                                            </main>
+                                                                            
+
+                                        {% endblock %}
