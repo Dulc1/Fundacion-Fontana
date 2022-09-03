@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = False
 
-CSRF_TRUSTED_ORIGINS = ['https://proyectofinalsupersayayin2.herokuapp.com']
+
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
@@ -23,6 +23,9 @@ DATABASES = {
         'PORT':'',
     }
 }
+
+
+CSRF_TRUSTED_ORIGINS = ['https://proyectofinalsupersayayin2.herokuapp.com']
 
 db_from_env= dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
