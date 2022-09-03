@@ -7,6 +7,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = False
 
+CSRF_TRUSTED_ORIGINS = [ 'https://proyectofinalsupersayayin2.herokuapp.com' ]
+
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
