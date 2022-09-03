@@ -1,5 +1,5 @@
 proyectofontana/settings/base.py
 proyectofontana/settings/local.py
-proyectofontana/settings/__pycache__
-proyectofontana/__pycache__
+proyectofontana/settings/__pycache__/
+proyectofontana/__pycache__/
 db.sqlite
