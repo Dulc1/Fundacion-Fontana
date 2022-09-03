@@ -34,3 +34,4 @@ STATICFILES_STORAGE='whitenoise.storage.CompressedStaticFilesStorage'
 
 STATIC_URL = 'https://proyectofinalsupersayayin2.herokuapp.com/static/'
 MEDIA_URL = 'https://proyectofinalsupersayayin2.herokuapp.com/media/'
+
