@@ -1,5 +1,5 @@
-/Fund-Fontana/settings/base.py
-/Fund-Fontana/settings/local.py
-/Fund-Fontana/settings/__pycache__
-/Fund-Fontana/__pycache__
-/db.sqlite
+proyectofontana/settings/base.py
+proyectofontana/settings/local.py
+proyectofontana/settings/__pycache__
+proyectofontana/__pycache__
+db.sqlite
