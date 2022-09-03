@@ -1,66 +1,54 @@
-{% extends 'base.html' %}
+ {% extends 'base.html' %}
 
 {% load static %}
 
 {% block contenido %}
 
-<div class="row d-flex justify-content-around container-fluid" style="background-color: #0E2C40">
+<div class="row d-flex justify-content-around" style="background-color: #0E2C40">
                     <h1 class="align-text-center text-center text-white fw-bold">NOTICIAS</h1><br><br><br>
                 </div> 
                 <br>
+<section class="container">
 
 
-<main class="container">
-<br>
-<div class="table-responsive d-flex justify-content-between">
-<table  class="table container">
-                                    <thead class= "Noticia">
-                                
-                                
-                                        <tr>
-                                        {% for noticia  in noticias  %} 
-                                            <th  scope="col">
-                                            
-                                                <div class="d-flex-justify-content-between w-100-px-px p-3">
-                                                
-                                                    <div class="Card-img " style= "width:50rem">
-                                            <img class="img-container card-img-top" src="{{MEDIA_URL}}/{{ noticia.img }}">
-                                                    </div> 
-                                                </div>
-                                            </th>
-                                            
-                                            <th scope="col">
-                                            
-                                            
-                                                <div class="  d-flex-justify-content-between w-100-px-px p-3">
-                                                <h1 class="Titulo bg-light ">{{ noticia.titulo}}</h1>
-                                                                                <div class="GenericoPlantilla-text">
-                                            <br>
-                                                <h6>Publicado: {{ noticia.creado}}</h6>
-                                                <aside><p> {{noticia.contenido|slice:":100"}}</p></aside>
-                                                <a href="/noticia/{{noticia.id}}" class="Event-link">Leer mas...</a>
-                                                
-                                            
-                                                
-                                            </div>
-                                                                                </div>
-                                                                               
-                                                                            </th>
+  <article class="table-responsive d-flex justify-content-between">
+<table class="table container-fluid border border-5 bg-light rounded-3">
+<thead class="Noticia">
+<tr>
 
-                                                                            </tr>
-                                                                            
-                                                                            </thead>
-                                                                            
-                                                                            {%endfor %}
-                                                                        
-                                                                            
-                                                                            
-                                                                            </table>
-                                                                    </div>
-                                                        
-                                                                            
-                                    
-                                                                            </main>
-                                                                            
 
-                                        {% endblock %}
+    {% for noticia  in noticias  %}
+
+    <th scope="col">
+
+
+    <div class="d-flex justify-content-between w-50-px-px p-3">
+
+      <div class="card-img" style= "max-width:540px;">
+        <img class="img-fluid  rounded-start" src="{{MEDIA_URL}}/{{ noticia.img }}" alt="">
+      </div>
+      </div>
+      </th>
+      <th scope="col">
+        <div class="d-flex justify-content-between">
+        <div class="col">
+      <h1 class="card-title">{{noticia.titulo}}</h1>
+
+       <h6 class="card-text">Publicado:<small class= "text-muted"> {{ noticia.creado }}</small></h6>
+      <p class=" card-text  text-muted">{{noticia.contenido|slice:":100"}}</p>
+       
+        
+        <a href="/noticias/{{ noticia.id }}" class="Event-link">Leer Más...</a>
+      </div>
+      </div>
+      </th>
+      </tr>
+      </thead>
+      </table>
+    {% endfor %}
+  </article>
+</section>
+{% endblock %}>
+
+
+

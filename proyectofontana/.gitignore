@@ -1,1 +1,5 @@
-proyectofontana/settings/local.py
+/proyectofontana/settings/base.py
+/royectofontana/settings/local.py
+/proyectofontana/settings/__pycache__
+/proyectofontana/__pycache__
+/db.sqlite

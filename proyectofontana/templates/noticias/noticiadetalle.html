@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="row d-flex justify-content-around" style="background-color: #0E2C40">
+                    <h1 class="align-text-center text-center text-white fw-bold">NOTICIAS</h1><br><br><br>
+                </div> 
+                <br>
+<section class="container">
+<article class="Noticia">
+<div class="card mb-3">
+<img class="card-img-top" src="{{MEDIA_URL}}/{{noticia.img}}" alt="{{ noticia.nombre }}"> 
+<div class= "card-body">
+
+    <h1 class="card-title">{{ noticia.titulo }}</h1>
+    <p class="card-text" >{{noticia.contenido}}</p>
+    <p class="card-text" >Publicado: <small class="text-muted">{{ noticia.creado }}</small></p>
+    </div>
+    </div>
+  
+  
+  </article>
+  <article class="Comentarios">
+    {% for comentario in comentarios %}
+    <div class="Comentario card border border-3 bg-light">
+  
+    <div class="card-body "> 
+    
+      <p class="comentario-header"> {{ comentario.autor}}<span class="Fecha"> {{ comentario.creado}}</span></p></div>
+
+    
+
+      <p class='comentario-description text-center'> {{ comentario.cuerpo_comentario}} </p>
+    </div>
+
+  
+      {% endfor %}
+      {% if user.is_authenticated %}
+      <div class="Comentario card border border-3 bg-light">
+      <div class="card-body "> 
+
+    <form method="POST">
+      {% csrf_token %}
+    
+      {{form.as_p}}
+      
+      <button type="submit" class="btn_comentar">
+        Comentar
+      </button>
+    </form>
+    </div>
+      {% else %}
+    <div class="Comentario">
+      <button type="button">
+        <a href="/login" class="Titulo ">Inicia sesion para comentar</a>
+      </button>
+    </div>
+    </div>
+  </article>
+  {% endif %}
+</section>
+
+{% endblock %}
+
+
+

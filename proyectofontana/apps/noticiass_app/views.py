@@ -1,8 +1,7 @@
-from unicodedata import category
 from urllib import request
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, redirect
-from .models import noticia, comentarios,categorias
+from .models import Noticia, Comentario,Categoria
 from apps.eventos_app.models import Evento
 from django.contrib.auth.models import User
 from django.http.response import Http404
@@ -12,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     
-    lista_noticias = noticia.objects.all().order_by('-id')[:3]
+    lista_noticias = Noticia.objects.all().order_by('-id')[:3]
     lista_eventos = Evento.objects.all().order_by('-id')[:3]
     lista_user = User.objects.all()
     context = {
@@ -27,13 +26,13 @@ def nosotros(request):
     return render(request, 'nosotros.html')
 
 
-def biblioteca(request):
-    return render(request, 'biblioteca.html')
+def contacto(request):
+    return render(request, 'contacto.html')
 
 
-def noticias(request):
-    lista_categorias = categorias.objects.all()
-    lista_noticias = noticia.objects.all().order_by('-id')
+def notices(request):
+    lista_categorias = Categoria.objects.all()
+    lista_noticias = Noticia.objects.all().order_by('-id')
     context = {
         "categorias":lista_categorias,
         "noticias": lista_noticias
@@ -41,11 +40,11 @@ def noticias(request):
     return render(request, 'noticias.html', context)
 
 
-def noticiaDetalle(request, id):
+def noticeDetail(request, id):
     try:
-        noticia = noticia.objects.get(id=id)
-        lista_comentarios = comentarios.objects.filter(aprobado=True)
-    except noticia.DoesNotExist:
+        noticia = Noticia.objects.get(id=id)
+        lista_comentarios = Comentario.objects.filter(aprobado=True)
+    except Noticia.DoesNotExist:
         raise Http404('La Noticia solicitada no existe')\
     
     form = FormComment()
@@ -53,7 +52,7 @@ def noticiaDetalle(request, id):
     if (request.method == "POST") and (request.user.id != None):
         form = FormComment(request.POST)
         if form.is_valid():
-            comment = comentarios(
+            comment = Comentario(
                 autor_id = request.user.id,
                 cuerpo_comentario=form.cleaned_data["cuerpo_comentario"],
                 noticia=noticia
@@ -66,16 +65,18 @@ def noticiaDetalle(request, id):
         "noticia": noticia,
         "comentarios": lista_comentarios
     }
-    return render(request, 'noticiasdetalle.html', context)
+    return render(request, 'noticiadetalle.html', context)
+
+
 
 def categoriaDetail(request, id):
 
     try:
-        lista_categorias = categorias.objects.all()
-        categoria = categorias.objects.get(id = id)
-        noticias = noticia.objects.filter(categorias = id)
-        lista_comentarios = comentarios.objects.filter(aprobado=True)
-    except noticia.DoesNotExist:
+        lista_categorias = Categoria.objects.all()
+        categoria = Categoria.objects.get(id = id)
+        noticias = Noticia.objects.filter(categorias = id)
+        lista_comentarios = Comentario.objects.filter(aprobado=True)
+    except Noticia.DoesNotExist:
         raise Http404('La Noticia solicitada no existe')\
     
     form = FormComment()
@@ -83,12 +84,10 @@ def categoriaDetail(request, id):
     if (request.method == "POST") and (request.user.id != None):
         form = FormComment(request.POST)
         if form.is_valid():
-            print("Validacion Exitosa")
-
-            comment = comentarios(
+            comment = Comentario(
                 autor_id = request.user.id,
-                cuerpo_comentario=form.cleaned_data["cuerpo_comentario"],
-                noticia=noticia
+                cuerpo_comentario = form.cleaned_data["cuerpo_comentario"],
+                noticia=Noticia
             )
             comment.save()
             return redirect("Noticia")
@@ -100,14 +99,14 @@ def categoriaDetail(request, id):
         "noticias": noticias,
         "comentarios": lista_comentarios
     }
-    return render(request, 'noticias.html', context)
+    return render(request, 'noticiasdetalle.html', context)
 
 
 @login_required
 def commentAproved(request, id):
     try:
-        comentario = comentarios.objects.get(id=id)
-    except comentarios.DoesNotExist:
+        comentario = Comentario.objects.get(id=id)
+    except Comentario.DoesNotExist:
         raise Http404("Inexistente")
 
     comentario.aprpove()

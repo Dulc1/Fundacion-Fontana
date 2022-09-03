@@ -5,7 +5,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Evento(models.Model):
-    organiza= models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True)
+    organiza= models.ForeignKey( 'auth.User',on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255)
     dia= models.DateTimeField(null=True)
     publicado = models.DateTimeField(blank=True, null=True)

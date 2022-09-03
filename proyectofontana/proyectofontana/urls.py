@@ -18,7 +18,7 @@ from django.urls import  include,path
 from django.urls import re_path as url
 from django.conf.urls.static import static
 from django.conf import settings
-from apps.noticias_app import views as  viewsNotice
+from apps.noticiass_app import views as viewsNotices
 from apps.eventos_app.views import eventos
 from apps.eventos_app import views as viewsEvents
 from django.conf.urls.static import static
@@ -32,23 +32,26 @@ from apps.fotos_app.views import galeria, viewPhoto
 urlpatterns =[
     path('admin/', admin.site.urls),
 
-    path('', viewsNotice.inicio, name='inicio'),
+    path('', viewsNotices.inicio, name='inicio'),
     
-    path('login/', include('apps.login_app.urls'), name='login'),
+    path('login', include('apps.login_app.urls'), name='login'),
 
     path('biblioteca',galeria, name='galeria'),
 
     path('photo/', viewPhoto, name='photo'),
     
-    path('nosotros', viewsNotice.nosotros, name='nosotros'),
+    path('nosotros', viewsNotices.nosotros, name='nosotros'),
 
-    url('noticias/<int:id>', viewsNotice.noticiaDetalle, name='Noticia' ),
+    path('noticias/<int:id>', viewsNotices.noticeDetail, name='Noticia' ),
 
-    path('noticias', viewsNotice.noticias, name='noticias'),
+    path('noticias',viewsNotices.notices, name='noticias'),
 
-    path('comentarios/<int:id>', viewsNotice.commentAproved, name='comentAproved'),
+    path('comentarios/<int:id>', viewsNotices.commentAproved, name='comentAproved'),
     
-    path('categoria/<int:id>', viewsNotice.categoriaDetail, name='Noticia'),
+    
+    path('cat_not/<int:id>',viewsNotices.categoriaDetail, name='categorias'),
+
+   # url('noticias/', include('apps.noticias_app.urls')),
 
     path('registration', include('apps.login_app.urls')),
 
